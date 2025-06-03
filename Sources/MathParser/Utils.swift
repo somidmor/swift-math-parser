@@ -3,7 +3,11 @@
 import Foundation
 
 @inlinable
-func factorial(_ n: Double) -> Double { (1...Int(n)).map(Double.init).reduce(1.0, *) }
+func factorial(_ n: Double) -> Double {
+  guard n >= 0 else { return .nan }
+  guard n >= 1 else { return 1.0 }
+  return (1...Int(n)).map(Double.init).reduce(1.0, *)
+}
 
 @inlinable
 func multiply(lhs: Token, rhs: Token) -> Token { Token.reducer(lhs: lhs, rhs: rhs, op: (*), name: "*") }
